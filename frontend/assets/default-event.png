@@ -1,0 +1,2 @@
+// This is a placeholder file. The actual image file should be uploaded to the /assets directory.
+// For now, we'll rely on the error handling in the EventCard component to use a placeholder from Expo.
