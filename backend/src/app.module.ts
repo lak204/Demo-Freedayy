@@ -1,29 +1,41 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import { EventsModule } from './events/events.module';
+import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './prisma/prisma.module';
-import { EventsModule } from './modules/events/events.module';
-import { AuthModule } from './modules/auth/auth.module';
-import { UsersModule } from './modules/users/users.module';
-import { CategoriesModule } from './modules/categories/categories.module';
-import { BookingsModule } from './modules/bookings/bookings.module';
-import { ReviewsModule } from './modules/reviews/reviews.module';
-import { PreferencesModule } from './modules/preferences/preferences.module';
+import { ConfigModule } from '@nestjs/config';
+import { PostsModule } from './posts/posts.module';
+import { CommentsModule } from './comments/comments.module';
+import { TagsModule } from './tags/tags.module';
+import { RegistrationsModule } from './registrations/registrations.module';
+import { FavoritesModule } from './favorites/favorites.module';
+import { ReportsModule } from './reports/reports.module';
+import { AuditLogsModule } from './audit-logs/audit-logs.module';
+import { UploadModule } from './upload/upload.module';
+import { TransactionsModule } from './transactions/transactions.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    PrismaModule,
-    AuthModule,
+    ScheduleModule.forRoot(),
     UsersModule,
     EventsModule,
-    CategoriesModule,
-    BookingsModule,
-    ReviewsModule,
-    PreferencesModule,
+    AuthModule,
+    PrismaModule,
+    PostsModule,
+    CommentsModule,
+    TagsModule,
+    RegistrationsModule,
+    FavoritesModule,
+    ReportsModule,
+    AuditLogsModule,
+    UploadModule,
+    TransactionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

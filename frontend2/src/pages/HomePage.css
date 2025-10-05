@@ -1,0 +1,660 @@
+:root {
+  /* Brand gradient: #023334 -> #08BAA1 */
+  --brand-start: #023334;
+  --brand-end:   #08BAA1;
+
+  /* Primary color = brand end */
+  --primary-color: #08BAA1;
+  --primary-hover: #079b8f; /* hover hơi tối hơn */
+  --secondary-color: #ecfeff;
+
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --text-highlight: #064e3b;
+
+  --bg-color: #ffffff;
+  --section-bg-color: #f9fafb;
+  --border-color: #e5e7eb;
+}
+
+.home-page { width: 100%; }
+
+/* ========= Helpers ========= */
+.bg-brand-gradient {
+  background: linear-gradient(135deg, var(--brand-start) 0%, var(--brand-end) 100%);
+}
+
+.btn,
+.hero__button,
+.cta-section__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.8rem;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff; /* yêu cầu: text white */
+  background-color: #08BAA1; /* yêu cầu: #08BAA1 */
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover,
+.hero__button:hover,
+.cta-section__button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(8, 186, 161, 0.25);
+}
+
+/* Outline phiên bản nếu cần */
+.btn--outline {
+  background: transparent;
+  color: #fff;
+  border-color: #ffffffcc;
+}
+.btn--outline:hover {
+  background: #ffffff1a;
+}
+
+/* ========= Hero ========= */
+.hero {
+  /* overlay gradient trên ảnh */
+  background-image:
+    linear-gradient(135deg, rgba(2, 51, 52, 0.9), rgba(8, 186, 161, 0.85)),
+    url('https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1200&q=60');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  padding: 8rem 2rem 6rem;
+  padding-top: calc(var(--header-height) + 4rem);
+  text-align: center;
+  color: #fff;
+}
+
+.hero__content { max-width: 800px; margin: 0 auto; }
+
+.hero__title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -1.5px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.hero__title--highlight { color: #fff; text-decoration: underline; text-decoration-color: #b6fff2; }
+
+.hero__subtitle {
+  font-size: 1.15rem;
+  color: #e6fffb;
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.hero__actions {
+  display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+}
+
+/* Các class cũ để tương thích (đều dùng style nút chung) */
+.hero__button--primary { /* giữ cho tương thích, đã áp dụng ở .btn */ }
+.hero__button--secondary { /* giờ cũng dùng primary theo yêu cầu */ }
+
+/* ========= Section ========= */
+.page-section { padding: 5rem 2rem; }
+
+.section-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #08BAA1;
+}
+
+.section-heading--highlight {
+  background: linear-gradient(135deg, var(--brand-start), var(--brand-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ========= Featured Events ========= */
+.featured-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.event-card {
+  position: relative; border-radius: 14px; overflow: hidden; display: block;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  border: 1px solid var(--border-color);
+}
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.event-card__image {
+  width: 100%; height: 350px; object-fit: cover; transition: transform 0.3s ease;
+}
+.event-card:hover .event-card__image { transform: scale(1.05); }
+
+.event-card__overlay {
+  position: absolute; inset: auto 0 0 0; padding: 2rem 1.5rem 1.5rem; color: white;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.2), transparent);
+}
+
+.event-card__category {
+  display: inline-block;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem; font-weight: 700; margin-bottom: 0.6rem;
+  color: #f3f3f3;
+  background: linear-gradient(135deg, var(--brand-start), var(--brand-end));
+  box-shadow: 0 4px 16px rgba(8,186,161,0.35);
+}
+
+.event-card__title {
+  font-size: 1.25rem; font-weight: 700; line-height: 1.4; margin: 0; color: #f3f3f3;
+}
+
+/* ========= How It Works ========= */
+.how-it-works { background-color: var(--section-bg-color); }
+
+.steps-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem; max-width: 1100px; margin: 0 auto;
+}
+.step-card { text-align: center; padding: 2rem; }
+
+.step-card__icon-wrapper {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 70px; height: 70px; border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-start), var(--brand-end));
+  box-shadow: 0 8px 24px rgba(8,186,161,0.35);
+  margin-bottom: 1.5rem; transition: transform 0.3s ease;
+}
+.step-card:hover .step-card__icon-wrapper { transform: scale(1.1) rotate(10deg); }
+
+.step-card__title { font-size: 1.35rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; }
+.step-card__description { font-size: 1.1rem; color: var(--text-light); line-height: 1.6; }
+
+/* ========= Forum Preview ========= */
+.forum-preview {
+  max-width: 800px; margin: 0 auto; background: var(--bg-color);
+  border-radius: 12px; border: 1px solid var(--border-color); padding: 2rem;
+}
+.post-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+
+.post-item__link {
+  display: block; padding: 1rem 1.5rem; border-radius: 10px; text-decoration: none;
+  border: 1px solid var(--border-color);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+}
+.post-item__link:hover {
+  border-color: var(--primary-color);
+  transform: translateX(5px);
+  box-shadow: 3px 0 14px rgba(8, 186, 161, 0.18);
+}
+
+.post-item__title { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.5rem; }
+.post-item__meta {
+  display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; color: var(--text-light);
+}
+.post-item__comments { display: flex; align-items: center; gap: 0.25rem; }
+
+.forum-preview__cta {
+  text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px dashed var(--border-color);
+}
+.forum-preview__cta p { color: var(--text-light); margin-bottom: 1rem; }
+
+/* ========= CTA Section ========= */
+.cta-section {
+  /* dùng brand gradient thay vì màu tối */
+  background: linear-gradient(135deg, var(--brand-start), var(--brand-end));
+  padding: 5rem 2rem; color: white;
+}
+.cta-section__content { max-width: 700px; margin: 0 auto; text-align: center; }
+
+.cta-section__title {
+  font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; color: #fff;
+  text-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+.cta-section__subtitle {
+  font-size: 1.1rem; color: #e6fffb; margin-bottom: 2rem; line-height: 1.7;
+}
+
+/* .cta-section__button đã gộp vào .btn selector phía trên */
+
+/* ========= Responsive ========= */
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .hero__title {
+    white-space: nowrap; /* Giữ text trên 1 hàng cho desktop */
+  }
+}
+
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .hero {
+    padding: 7rem 2rem 5rem;
+    padding-top: calc(var(--header-height) + 3rem);
+  }
+  
+  .hero__title {
+    font-size: 3rem;
+    letter-spacing: -1px;
+  }
+  
+  .hero__subtitle {
+    font-size: 1.1rem;
+    max-width: 600px;
+  }
+  
+  .page-section {
+    padding: 4rem 2rem;
+  }
+  
+  .section-heading {
+    font-size: 2.25rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .hero {
+    padding: 5rem 1rem 3rem;
+    padding-top: calc(var(--header-height) + 2rem);
+  }
+  
+  .hero__content {
+    max-width: 100%;
+  }
+  
+  .hero__title {
+    font-size: 2.25rem;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+    margin-bottom: 1.25rem;
+    white-space: normal;
+  }
+  
+  .hero__title--highlight {
+    display: block;
+    margin-top: 0.25rem;
+  }
+  
+  .hero__subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+  }
+  
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .hero__button {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .page-section {
+    padding: 3rem 1rem;
+  }
+  
+  .section-heading {
+    font-size: 1.875rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .hero {
+    padding: 4rem 0.75rem 2.5rem;
+    padding-top: calc(var(--header-height) + 1.5rem);
+  }
+  
+  .hero__title {
+    font-size: 1.875rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  
+  .hero__subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.75rem;
+    padding: 0 0.25rem;
+  }
+  
+  .hero__button {
+    max-width: 260px;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.85rem;
+  }
+  
+  .page-section {
+    padding: 2.5rem 0.75rem;
+  }
+  
+  .section-heading {
+    font-size: 1.625rem;
+    margin-bottom: 1.5rem;
+  }
+}
+/* ==== OVERRIDES THEO YÊU CẦU ==== */
+
+/* 1) Hero title highlight: bỏ gạch dưới, giữ màu chữ đồng bộ */
+.hero__title { 
+  color: #ffffff;                /* tiêu đề hero màu trắng */
+}
+.hero__title--highlight {
+  color: #ffffff;                /* có thể để trắng cho đồng bộ hero */
+  text-decoration: none !important; /* xóa gạch dưới */
+}
+
+/* 2) Nút trong hero: #08BAA1, text trắng, hover tối hơn */
+.hero__button {
+  background-color: #08BAA1 !important;
+  color: #ffffff !important;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.hero__button:hover {
+  background-color: #079b8f !important; /* #08BAA1 tối hơn */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(8, 186, 161, 0.25);
+}
+
+/* Nếu có hai biến thể primary/secondary thì ép chúng giống nhau theo yêu cầu */
+.hero__button--primary,
+.hero__button--secondary {
+  background-color: #08BAA1 !important;
+  color: #ffffff !important;
+}
+
+/* 3) “Sự kiện Nổi bật”: đổi span sang màu #08BAA1 */
+.section-heading--highlight {
+  color: #08BAA1 !important;
+  background: none !important;  /* bỏ gradient nếu có */
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+}
+
+/* (Tùy chọn) Làm overlay hero rõ hơn một chút để chữ nổi bật */
+.hero {
+  color: #fff;
+  background-image:
+    linear-gradient(135deg, rgba(2,51,52,.88), rgba(8,186,161,.78)),
+    url('https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1200&q=60');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Giữ nguyên header: KHÔNG ghi đè class của navbar/header */
+/* ===== Header luôn trắng, nổi trên hero ===== */
+:root {
+  --header-height: 64px; /* chỉnh theo chiều cao header thực tế */
+}
+
+/* Wrapper header: dùng các selector phổ biến, đổi theo dự án nếu cần */
+header, .header, .navbar, .site-header {
+  position: sticky;     /* hoặc fixed nếu bạn muốn bám đỉnh khi cuộn */
+  top: 0;
+  z-index: 50;
+  background: #ffffff !important; /* nền trắng */
+  color: #0f172a;                  /* chữ tối */
+  box-shadow: 0 2px 10px rgba(2, 51, 52, 0.06);
+  backdrop-filter: none;
+}
+
+/* Container bên trong (nếu có) giữ nền trắng */
+header *[class*="container"], .navbar *[class*="container"] {
+  background: transparent;
+}
+
+/* Link trong header: màu tối; active/hover dùng brand */
+header a, .navbar a {
+  color: #0f172a !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+header a:hover, .navbar a:hover {
+  color: #08BAA1 !important;
+}
+header .active, .navbar .active {
+  color: #08BAA1 !important;
+}
+
+/* Nút trong header (nếu có) */
+header .btn, .navbar .btn {
+  background-color: #08BAA1;
+  color: #fff;
+  border: 1px solid transparent;
+}
+header .btn:hover, .navbar .btn:hover {
+  background-color: #079b8f;
+}
+
+/* Logo / avatar không bị filter bởi overlay */
+header img, .navbar img {
+  filter: none;
+}
+
+/* Hero chừa khoảng cho header cố định */
+.hero {
+  padding-top: calc(var(--header-height) + 4rem) !important;
+}
+
+/* ========= Additional Mobile Responsive ========= */
+
+/* Featured Events Grid */
+@media (max-width: 767px) {
+  .featured-events-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .event-card {
+    height: 280px;
+  }
+  
+  .event-card__overlay {
+    padding: 1.5rem 1rem 1rem;
+  }
+  
+  .event-card__title {
+    font-size: 1.125rem;
+    line-height: 1.3;
+  }
+  
+  .event-card__category {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-events-grid {
+    padding: 0 0.25rem;
+    gap: 1.25rem;
+  }
+  
+  .event-card {
+    height: 240px;
+  }
+  
+  .event-card__title {
+    font-size: 1rem;
+  }
+}
+
+/* Steps Grid */
+@media (max-width: 767px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .step-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .step-card__icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.25rem;
+  }
+  
+  .step-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .step-card__description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .step-card {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .step-card__icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .step-card__title {
+    font-size: 1.125rem;
+  }
+  
+  .step-card__description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Forum Preview */
+@media (max-width: 767px) {
+  .forum-preview {
+    margin: 0 0.5rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .post-list {
+    gap: 0.75rem;
+  }
+  
+  .post-item__title {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  .post-item__meta {
+    font-size: 0.8rem;
+    margin-top: 0.375rem;
+  }
+  
+  .forum-preview__cta p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .forum-preview {
+    margin: 0 0.25rem;
+    padding: 1.25rem;
+  }
+  
+  .post-item__title {
+    font-size: 0.9rem;
+  }
+  
+  .post-item__meta {
+    font-size: 0.75rem;
+  }
+}
+
+/* CTA Section */
+@media (max-width: 767px) {
+  .cta-section {
+    padding: 4rem 1rem;
+  }
+  
+  .cta-section__content {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .cta-section__title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-section__subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-section__button {
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-section {
+    padding: 3rem 0.75rem;
+  }
+  
+  .cta-section__content {
+    padding: 2rem 1.25rem;
+  }
+  
+  .cta-section__title {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  .cta-section__subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .cta-section__button {
+    max-width: 260px;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
